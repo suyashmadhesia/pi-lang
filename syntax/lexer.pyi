@@ -1,4 +1,6 @@
-from syntax_token import SyntaxToken
+from . syntax_kind import SyntaxKind
+from utils.ie_numberable import IEnumerable
+
 
 class Lexer:
 
@@ -6,6 +8,12 @@ class Lexer:
 
     def __peek(self, offset: int) -> chr: ...
 
-    def lex(self) -> SyntaxToken: ...
+    def lex(self) -> SyntaxKind: ...
 
     def next(self) -> None: ...
+
+    @property
+    def diagnostics(self) -> IEnumerable: ...
+
+    @property
+    def current(self) -> chr: ...
