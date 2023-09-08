@@ -1,7 +1,8 @@
 from typing import List
 
-from utils.ie_numberable import IEnumerable
+from utils.generics import IEnumerable
 from . syntax_kind import SyntaxKind
+from . syntax_token import SyntaxToken
 
 
 class Lexer:
@@ -19,7 +20,7 @@ class Lexer:
     def current(self):
         return self.__peek(0)
 
-    def __peek(self, offset):
+    def __peek(self, offset: int):
         index: int = self.__position + offset
         if index >= len(self.__text):
             return '\0'
@@ -30,7 +31,7 @@ class Lexer:
 
     def lex(self):
         if self.__position >= len(self.__text):
-            return SyntaxKind.EndOfFileToken
+            return SyntaxToken(SyntaxKind.EndOfFileToken, self.__position, '\0')
 
         if self.current.isdigit():
             start: int = self.__position
@@ -38,8 +39,8 @@ class Lexer:
                 self.__next()
             value: str = self.__text[start:self.__position]
             try:
-                value = int(value)
-                return SyntaxKind.NumberToken
+                value: int = int(value)
+                return SyntaxToken(SyntaxKind.NumberToken, start, self.__position, value)
             except:
                 self.__diagnostics.append(f'Invalid int at {start}')
 
@@ -48,21 +49,21 @@ class Lexer:
             while self.current.isspace() or not len(self.current):
                 self.__next()
             value: str = self.__text[start:self.__position]
-            return SyntaxKind.WhiteSpaceToken
+            return SyntaxToken(SyntaxKind.WhiteSpaceToken, start, self.__text)
 
         if self.current == '+':
             self.__next()
-            return SyntaxKind.PlusToken
+            return SyntaxToken(SyntaxKind.PlusToken, self.__position, "+")
         if self.current == '-':
             self.__next()
-            return SyntaxKind.MinusToken
+            return SyntaxToken(SyntaxKind.MinusToken, self.__position, "-")
         if self.current == '*':
             self.__next()
-            return SyntaxKind.StarToken
+            return SyntaxToken(SyntaxKind.StarToken, self.__position, "*")
         if self.current == '/':
             self.__next()
-            return SyntaxKind.SlashToken
+            return SyntaxToken(SyntaxKind.SlashToken, self.__position, "/")
         self.__diagnostics.append(
             f'ERROR: Bad Token found on position {self.__position}')
         self.__next()
-        return SyntaxKind.BadToken
+        return SyntaxToken(SyntaxKind.BadToken, self.__position, self.__text[-1])

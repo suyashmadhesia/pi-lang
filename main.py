@@ -22,9 +22,9 @@ def main():
         lexer = Lexer(line)
         while True:
             token = lexer.lex()
-            if token not in {SyntaxKind.WhiteSpaceToken, SyntaxKind.BadToken}:
+            if token.kind not in {SyntaxKind.WhiteSpaceToken, SyntaxKind.BadToken}:
                 tokens.append(token)
-            if token == SyntaxKind.EndOfFileToken:
+            if token.kind == SyntaxKind.EndOfFileToken:
                 break
         for d in lexer.diagnostics:
             diagnostics.append(d)
