@@ -1,7 +1,4 @@
-from syntax.syntax_node import SyntaxNode
-from .syntax_kind import SyntaxKind
 from .syntax_node import SyntaxNode
-from utils.generics import IEnumerable
 
 
 class SyntaxToken(SyntaxNode):

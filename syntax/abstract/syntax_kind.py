@@ -10,3 +10,4 @@ class SyntaxKind(Enum):
     StarToken = 5
     SlashToken = 6
     BadToken = 7
+    BinaryExpression = 8

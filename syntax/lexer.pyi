@@ -1,4 +1,4 @@
-from utils.generics import IEnumerable
+from .generics.ie_enumerable import IEnumerable
 from . syntax_token import SyntaxToken
 from typing import TypeVar
 

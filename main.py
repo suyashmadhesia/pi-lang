@@ -2,7 +2,7 @@ import os
 
 
 from syntax.lexer import Lexer
-from syntax.syntax_kind import SyntaxKind
+from syntax.abstract.syntax_kind import SyntaxKind
 
 
 def __clear():

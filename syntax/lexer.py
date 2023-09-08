@@ -1,7 +1,7 @@
 from typing import List
 
-from utils.generics import IEnumerable
-from . syntax_kind import SyntaxKind
+from .generics.ie_enumerable import IEnumerable
+from . abstract.syntax_kind import SyntaxKind
 from . syntax_token import SyntaxToken
 
 
