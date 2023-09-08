@@ -18,3 +18,6 @@ class IEnumerable(Iterable[T]):
         else:
             self.__index = 0
             raise StopIteration
+
+    def any(self) -> bool:
+        return len(self.__data) > 0

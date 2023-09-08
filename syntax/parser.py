@@ -1,5 +1,7 @@
 from typing import List
 
+from .syntax_tree import SyntaxTree
+from .abstract.expression_syntax import ExpressionSyntax
 from .generics.ie_enumerable import IEnumerable
 from .lexer import Lexer
 from .syntax_token import SyntaxToken
@@ -46,4 +48,13 @@ class Parser:
             return self.__next_token()
         self.__diagnostics.append(f"ERROR: Unexpected token <{self.current.kind.name}> expected <{kind.name}>")
         return SyntaxToken(kind, self.current.position, "")
+    
+    def parse(self):
+        expression = self.__parse_expression()
+        end_of_file_token = self.__match_token(SyntaxKind.EndOfFileToken)
+        return SyntaxTree(self.diagnostics, expression, end_of_file_token)
+    
+
+    def __parse_expression(self, parent_precedence=0):
+        ...
 

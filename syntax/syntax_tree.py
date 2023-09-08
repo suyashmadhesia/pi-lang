@@ -19,4 +19,6 @@ class SyntaxTree:
 
     @staticmethod
     def parse(text):
-        ...
+        from .parser import Parser
+        parser = Parser(text)
+        return parser.parse()

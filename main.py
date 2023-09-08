@@ -1,8 +1,7 @@
 import os
 
 
-from syntax.lexer import Lexer
-from syntax.abstract.syntax_kind import SyntaxKind
+from syntax.syntax_tree import SyntaxTree
 
 
 def __clear():
@@ -19,22 +18,13 @@ def main():
             continue
         if line == "exit":
             break
-        lexer = Lexer(line)
-        while True:
-            token = lexer.lex()
-            if token.kind not in {SyntaxKind.WhiteSpaceToken, SyntaxKind.BadToken}:
-                tokens.append(token)
-            if token.kind == SyntaxKind.EndOfFileToken:
-                break
-        for d in lexer.diagnostics:
-            diagnostics.append(d)
-        if len(diagnostics) > 0:
-            for d in diagnostics:
-                print(d)
+        syntax_tree = SyntaxTree.parse(line)
+        diagnostics = syntax_tree.diagnostics
+        if not diagnostics.any():
             continue
-        print(tokens)
-
-        
+        else:
+            for diagnostic in diagnostics:
+                print(diagnostic)
 
 
 if __name__ == "__main__":
