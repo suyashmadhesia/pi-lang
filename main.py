@@ -3,6 +3,7 @@ import os
 from syntax.syntax_node import SyntaxNode
 from syntax.syntax_token import SyntaxToken
 from syntax.syntax_tree import SyntaxTree
+from syntax.generics.ie_enumerable import IEnumerable
 
 
 def write(data: any = ""):
@@ -13,7 +14,7 @@ def write_line(data: any = ""):
     print(data, end="\n")
 
 
-def __clear():
+def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
 
@@ -31,11 +32,10 @@ def show_parse_tree(node: SyntaxNode, indent: str = "", is_last: bool = True):
 
 def main():
     while True:
-        tokens = []
-        diagnostics = []
+        diagnostics: IEnumerable[str] = []
         line = str(input(">>> "))
         if line == "clear":
-            __clear()
+            clear()
             continue
         if line == "exit":
             break
@@ -45,7 +45,7 @@ def main():
             show_parse_tree(syntax_tree.root)
         else:
             for diagnostic in diagnostics:
-                print(diagnostic)
+                write_line(diagnostic)
 
 
 if __name__ == "__main__":
