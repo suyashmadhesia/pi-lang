@@ -1,4 +1,5 @@
 from typing import Iterable, TypeVar
+
 T = TypeVar('T')
 
 
@@ -21,3 +22,6 @@ class IEnumerable(Iterable[T]):
 
     def any(self) -> bool:
         return len(self.__data) > 0
+
+    def last_or_default(self, default_value: T = None) -> bool:
+        return self.__data[-1] if self.any() else default_value

@@ -1,6 +1,7 @@
-from .generics.ie_enumerable import IEnumerable
-from . syntax_token import SyntaxToken
 from typing import TypeVar
+
+from .generics.ie_enumerable import IEnumerable
+from .syntax_token import SyntaxToken
 
 T = TypeVar("T")
 

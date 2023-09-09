@@ -1,8 +1,8 @@
 from typing import TypeVar
 
+from .abstract.syntax_kind import SyntaxKind
 from .generics.ie_enumerable import IEnumerable
 from .syntax_node import SyntaxNode
-from .abstract.syntax_kind import SyntaxKind
 
 T = TypeVar('T')
 

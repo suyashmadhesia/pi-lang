@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from . abstract.syntax_kind import SyntaxKind
+
+from .abstract.syntax_kind import SyntaxKind
 from .generics.ie_enumerable import IEnumerable
 
 class SyntaxNode(ABC):

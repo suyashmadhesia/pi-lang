@@ -1,11 +1,13 @@
 from typing import List
 
-from .syntax_tree import SyntaxTree
-from .abstract.expression_syntax import ExpressionSyntax
+from .abstract.syntax_kind import SyntaxKind
+from .binary_expression_syntax import BinaryExpressionSyntax
 from .generics.ie_enumerable import IEnumerable
 from .lexer import Lexer
+from .literal_expression_syntax import LiteralExpressionSyntax
+from .syntax_facts import SyntaxFacts
 from .syntax_token import SyntaxToken
-from .abstract.syntax_kind import SyntaxKind
+from .syntax_tree import SyntaxTree
 
 
 class Parser:
@@ -26,7 +28,7 @@ class Parser:
     @property
     def diagnostics(self):
         return IEnumerable(self.__diagnostics)
-    
+
     def __peek(self, offset):
         index: int = self.__position + offset
         while index >= len(self.__tokens):
@@ -41,20 +43,31 @@ class Parser:
         _current = self.current
         self.__position += 1
         return _current
-    
 
     def __match_token(self, kind):
         if self.current.kind == kind:
             return self.__next_token()
-        self.__diagnostics.append(f"ERROR: Unexpected token <{self.current.kind.name}> expected <{kind.name}>")
+        self.__diagnostics.append(
+            f"ERROR: Unexpected token <{self.current.kind.name}> expected <{kind.name}>")
         return SyntaxToken(kind, self.current.position, "")
-    
+
     def parse(self):
         expression = self.__parse_expression()
         end_of_file_token = self.__match_token(SyntaxKind.EndOfFileToken)
         return SyntaxTree(self.diagnostics, expression, end_of_file_token)
-    
 
     def __parse_expression(self, parent_precedence=0):
-        ...
+        left = self.__parse_primary_expression()
+        while True:
+            precedence = SyntaxFacts.get_binary_operator_precedence(
+                self.current.kind)
+            if precedence == 0 or precedence <= parent_precedence:
+                break
+            operator_token = self.__next_token()
+            right = self.__parse_expression(precedence)
+            left = BinaryExpressionSyntax(left, operator_token, right)
+        return left
 
+    def __parse_primary_expression(self):
+        number_token = self.__match_token(SyntaxKind.NumberToken)
+        return LiteralExpressionSyntax(number_token)

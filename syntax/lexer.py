@@ -1,8 +1,8 @@
 from typing import List
 
+from .abstract.syntax_kind import SyntaxKind
 from .generics.ie_enumerable import IEnumerable
-from . abstract.syntax_kind import SyntaxKind
-from . syntax_token import SyntaxToken
+from .syntax_token import SyntaxToken
 
 
 class Lexer:
@@ -37,10 +37,10 @@ class Lexer:
             start: int = self.__position
             while self.current.isdigit():
                 self.__next()
-            value: str = self.__text[start:self.__position]
+            text: str = self.__text[start:self.__position]
             try:
-                value: int = int(value)
-                return SyntaxToken(SyntaxKind.NumberToken, start, self.__position, value)
+                value: int = int(text)
+                return SyntaxToken(SyntaxKind.NumberToken, start, text, value)
             except:
                 self.__diagnostics.append(f'Invalid int at {start}')
 

@@ -1,9 +1,8 @@
+from .abstract.expression_syntax import ExpressionSyntax
+from .abstract.syntax_kind import SyntaxKind
 from .generics.ie_enumerable import IEnumerable
 from .syntax_token import SyntaxToken
-from .abstract.syntax_kind import SyntaxKind
 from .syntax_tree import SyntaxTree
-from .abstract.expression_syntax import ExpressionSyntax
-
 
 class Parser:
 

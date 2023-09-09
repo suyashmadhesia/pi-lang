@@ -1,7 +1,6 @@
-from .generics.ie_enumerable import IEnumerable
 from .abstract.expression_syntax import ExpressionSyntax
-from . syntax_token import SyntaxToken
-
+from .generics.ie_enumerable import IEnumerable
+from .syntax_token import SyntaxToken
 
 class SyntaxTree:
 

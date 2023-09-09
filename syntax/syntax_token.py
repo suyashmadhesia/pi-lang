@@ -1,3 +1,4 @@
+from .generics.ie_enumerable import IEnumerable
 from .syntax_node import SyntaxNode
 
 
@@ -26,4 +27,4 @@ class SyntaxToken(SyntaxNode):
         return self.__value
 
     def get_children(self):
-        return []
+        return IEnumerable([])

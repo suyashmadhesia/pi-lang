@@ -11,3 +11,4 @@ class SyntaxKind(Enum):
     SlashToken = 6
     BadToken = 7
     BinaryExpression = 8
+    LiteralExpression = 9
