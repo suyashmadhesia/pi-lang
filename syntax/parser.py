@@ -5,10 +5,10 @@ from .binary_expression_syntax import BinaryExpressionSyntax
 from .generics.ie_enumerable import IEnumerable
 from .lexer import Lexer
 from .literal_expression_syntax import LiteralExpressionSyntax
+from .parenthesized_expression_syntax import ParenthesizedExpressionSyntax
 from .syntax_facts import SyntaxFacts
 from .syntax_token import SyntaxToken
 from .syntax_tree import SyntaxTree
-from .parenthesized_expression_syntax import ParenthesizedExpressionSyntax
 
 
 class Parser:

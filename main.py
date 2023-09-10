@@ -1,10 +1,10 @@
 import os
 
+from syntax.evaluator import Evaluator
+from syntax.generics.ie_enumerable import IEnumerable
 from syntax.syntax_node import SyntaxNode
 from syntax.syntax_token import SyntaxToken
 from syntax.syntax_tree import SyntaxTree
-from syntax.generics.ie_enumerable import IEnumerable
-from syntax.evaluator import Evaluator
 
 
 def write(data: any = ""):

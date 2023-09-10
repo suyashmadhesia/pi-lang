@@ -1,9 +1,9 @@
 from syntax.generics.ie_enumerable import IEnumerable
 from syntax.syntax_node import SyntaxNode
-from .abstract.expression_syntax import ExpressionSyntax
-from .syntax_token import SyntaxToken
-from .abstract.syntax_kind import SyntaxKind
 
+from .abstract.expression_syntax import ExpressionSyntax
+from .abstract.syntax_kind import SyntaxKind
+from .syntax_token import SyntaxToken
 
 class ParenthesizedExpressionSyntax(ExpressionSyntax):
 

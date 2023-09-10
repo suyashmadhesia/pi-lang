@@ -1,6 +1,5 @@
 from .abstract.expression_syntax import ExpressionSyntax
 
-
 class Evaluator:
 
     def __init__(self, root: ExpressionSyntax) -> None: ...
