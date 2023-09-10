@@ -12,3 +12,7 @@ class SyntaxKind(Enum):
     BadToken = 7
     BinaryExpression = 8
     LiteralExpression = 9
+    ParenthesizedExpression = 10
+    OpenParenthesisToken = 11
+    CloseParenthesisToken = 12
+

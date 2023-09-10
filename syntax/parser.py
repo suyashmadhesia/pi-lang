@@ -8,6 +8,7 @@ from .literal_expression_syntax import LiteralExpressionSyntax
 from .syntax_facts import SyntaxFacts
 from .syntax_token import SyntaxToken
 from .syntax_tree import SyntaxTree
+from .parenthesized_expression_syntax import ParenthesizedExpressionSyntax
 
 
 class Parser:
@@ -69,5 +70,10 @@ class Parser:
         return left
 
     def __parse_primary_expression(self):
+        if self.current.kind == SyntaxKind.OpenParenthesisToken:
+            left = self.__next_token()
+            expression = self.__parse_expression()
+            right = self.__match_token(SyntaxKind.CloseParenthesisToken)
+            return ParenthesizedExpressionSyntax(left, expression, right)
         number_token = self.__match_token(SyntaxKind.NumberToken)
         return LiteralExpressionSyntax(number_token)

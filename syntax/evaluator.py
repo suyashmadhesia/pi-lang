@@ -1,6 +1,7 @@
 from .abstract.syntax_kind import SyntaxKind
 from .binary_expression_syntax import BinaryExpressionSyntax
 from .literal_expression_syntax import LiteralExpressionSyntax
+from .parenthesized_expression_syntax import ParenthesizedExpressionSyntax
 
 
 class Evaluator:
@@ -30,5 +31,9 @@ class Evaluator:
                 return int(left) // int(right)
             raise Exception(
                 f"Invalid Operator Token {node.operator_token.kind.name}")
+        
+        if type(node) == ParenthesizedExpressionSyntax:
+            return self.__evaluate_expression(node.expression)
+
         raise Exception(
-                f"Invalid node kind {node.kind}")
+                f"Invalid node kind {node.kind.name}")

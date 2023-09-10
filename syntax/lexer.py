@@ -63,6 +63,12 @@ class Lexer:
         if self.current == '/':
             self.__next()
             return SyntaxToken(SyntaxKind.SlashToken, self.__position, "/")
+        if self.current == '(':
+            self.__next()
+            return SyntaxToken(SyntaxKind.OpenParenthesisToken, self.__position, '(')
+        if self.current == ')':
+            self.__next()
+            return SyntaxToken(SyntaxKind.CloseParenthesisToken, self.__position, ')')
         self.__diagnostics.append(
             f'ERROR: Bad Token found on position {self.__position}')
         self.__next()
