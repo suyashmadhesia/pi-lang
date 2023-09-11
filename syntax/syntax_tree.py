@@ -18,7 +18,5 @@ class SyntaxTree:
         return self.__end_of_file_token
 
     @staticmethod
-    def parse(text):
-        from .parser import Parser
-        parser = Parser(text)
+    def parse(parser):
         return parser.parse()

@@ -5,6 +5,7 @@ from syntax.generics.ie_enumerable import IEnumerable
 from syntax.syntax_node import SyntaxNode
 from syntax.syntax_token import SyntaxToken
 from syntax.syntax_tree import SyntaxTree
+from syntax.parser import Parser
 
 
 def write(data: any = ""):
@@ -45,7 +46,8 @@ def main():
             write_line('Showing parse tree')
             tree = not tree
             continue
-        syntax_tree = SyntaxTree.parse(line)
+        parser = Parser(line)
+        syntax_tree = SyntaxTree.parse(parser)
         diagnostics = syntax_tree.diagnostics
         if tree:
             show_parse_tree(syntax_tree.root)

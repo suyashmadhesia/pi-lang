@@ -10,3 +10,9 @@ class SyntaxFacts:
         if kind == SyntaxKind.PlusToken or kind == SyntaxKind.MinusToken:
             return 1
         return 0
+
+    @staticmethod
+    def get_unary_operator_precedence(kind):
+        if kind == SyntaxKind.PlusToken or kind == SyntaxKind.MinusToken:
+            return 3
+        return 0

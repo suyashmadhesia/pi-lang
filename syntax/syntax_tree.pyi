@@ -1,6 +1,7 @@
 from .abstract.expression_syntax import ExpressionSyntax
 from .generics.ie_enumerable import IEnumerable
 from .syntax_token import SyntaxToken
+from .parser import Parser
 
 class SyntaxTree:
 
@@ -17,4 +18,4 @@ class SyntaxTree:
     def endOfFileToken(self) -> SyntaxToken: ...
 
     @staticmethod
-    def parse(text: str) -> 'SyntaxTree': ...
+    def parse(parser: Parser) -> 'SyntaxTree': ...

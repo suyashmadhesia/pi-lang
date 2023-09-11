@@ -15,4 +15,5 @@ class SyntaxKind(Enum):
     ParenthesizedExpression = 10
     OpenParenthesisToken = 11
     CloseParenthesisToken = 12
+    UnaryExpression = 13
 
