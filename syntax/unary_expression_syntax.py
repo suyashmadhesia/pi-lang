@@ -6,12 +6,12 @@ from .abstract.expression_syntax import ExpressionSyntax
 
 class UnaryExpressionSyntax(ExpressionSyntax):
 
-    def __init__(self, operatorToken, operand):
-        self.__operatorToken = operatorToken
+    def __init__(self, operator_token, operand):
+        self.__operatorToken = operator_token
         self.__operand = operand
 
     @property
-    def operatorToken(self):
+    def operator_token(self):
         return self.__operatorToken
 
     @property
@@ -23,4 +23,4 @@ class UnaryExpressionSyntax(ExpressionSyntax):
         return SyntaxKind.UnaryExpression
 
     def get_children(self) -> IEnumerable[SyntaxNode]:
-        return IEnumerable([self.operatorToken, self.operand])
+        return IEnumerable([self.operator_token, self.operand])

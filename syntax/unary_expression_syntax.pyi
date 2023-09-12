@@ -9,11 +9,11 @@ from .syntax_token import SyntaxToken
 
 class UnaryExpressionSyntax(ExpressionSyntax):
 
-    def __init__(self, operatorToken: SyntaxToken,
+    def __init__(self, operator_token: SyntaxToken,
                  operand: ExpressionSyntax) -> None: ...
 
     @property
-    def operatorToken(self) -> SyntaxToken: ...
+    def operator_token(self) -> SyntaxToken: ...
 
     @property
     def operand(self) -> ExpressionSyntax: ...

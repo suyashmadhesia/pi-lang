@@ -6,6 +6,7 @@ from .generics.ie_enumerable import IEnumerable
 from .lexer import Lexer
 from .literal_expression_syntax import LiteralExpressionSyntax
 from .parenthesized_expression_syntax import ParenthesizedExpressionSyntax
+from .unary_expression_syntax import UnaryExpressionSyntax
 from .syntax_facts import SyntaxFacts
 from .syntax_token import SyntaxToken
 from .syntax_tree import SyntaxTree
@@ -58,14 +59,22 @@ class Parser:
         return SyntaxTree(self.diagnostics, expression, end_of_file_token)
 
     def __parse_expression(self, parent_precedence=0):
-        left = self.__parse_primary_expression()
+        left = None
+        unary_operator_precdence = SyntaxFacts.get_unary_operator_precedence(
+            self.current.kind)
+        if unary_operator_precdence != 0 and unary_operator_precdence >= parent_precedence:
+            operator_token = self.__next_token()
+            operand = self.__parse_expression(unary_operator_precdence)
+            left = UnaryExpressionSyntax(operator_token, operand)
+        else:
+            left = self.__parse_primary_expression()
         while True:
-            precedence = SyntaxFacts.get_binary_operator_precedence(
+            binary_operator_precedence = SyntaxFacts.get_binary_operator_precedence(
                 self.current.kind)
-            if precedence == 0 or precedence <= parent_precedence:
+            if binary_operator_precedence == 0 or binary_operator_precedence <= parent_precedence:
                 break
             operator_token = self.__next_token()
-            right = self.__parse_expression(precedence)
+            right = self.__parse_expression(binary_operator_precedence)
             left = BinaryExpressionSyntax(left, operator_token, right)
         return left
 
