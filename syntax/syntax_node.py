@@ -1,10 +1,9 @@
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, abstractproperty
 
 
 class SyntaxNode(ABC):
 
-    @property
-    @abstractmethod
+    @abstractproperty
     def kind(self):
         ...
 
