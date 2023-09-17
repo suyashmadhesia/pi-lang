@@ -1,5 +1,5 @@
 from binding.abstract.bound_expression import BoundExpression
-from binding.abstract.bound_node_kind import BoundNodeKind
+from binding.abstract.bound_unary_operator_kind import BoundUnaryOperatorKind
 from binding.bound_unary_operator import BoundUnaryOperator
 from typing import TypeVar
 
@@ -18,7 +18,7 @@ class BoundUnaryExpression(BoundExpression):
     def op(self) -> BoundUnaryExpression: ...
 
     @property
-    def kind(self) -> BoundNodeKind: ...
+    def kind(self) -> BoundUnaryOperatorKind: ...
 
     @property
     def type(self) -> T: ...

@@ -9,12 +9,17 @@ class BoundBinaryExpression(BoundExpression):
         self.__op = op
         self.__right = right
 
+    @property
     def left(self): return self.__left
 
+    @property
     def right(self): return self.__right
 
+    @property
     def op(self): return self.__op
 
+    @property
     def kind(self): return BoundNodeKind.BinaryExpression
 
+    @property
     def type(self): return self.op.type

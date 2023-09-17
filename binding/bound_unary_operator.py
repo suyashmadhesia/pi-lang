@@ -4,17 +4,12 @@ from syntax.abstract.syntax_kind import SyntaxKind
 
 class BoundUnaryOperator:
 
-    __operators = [
-        'BoundUnaryOperator'(SyntaxKind.PlusToken,
-                             BoundUnaryOperatorKind.Identity, int),
-        'BoundUnaryOperator'(SyntaxKind.MinusToken,
-                             BoundUnaryOperatorKind.Negation, int)
-    ]
+    __operators = []
 
     def __init__(self, syntax_kind, kind, operand_type, result_type=None):
         self.__syntax_kind = syntax_kind
         self.__operand_type = operand_type
-        self.__result_type = result_type
+        self.__type = result_type if result_type is not None else operand_type
         self.__kind = kind
 
     @property
@@ -22,8 +17,8 @@ class BoundUnaryOperator:
         return self.__operand_type
 
     @property
-    def result_type(self):
-        return self.__result_type
+    def type(self):
+        return self.__type
 
     @property
     def kind(self):
@@ -32,6 +27,15 @@ class BoundUnaryOperator:
     @property
     def syntax_kind(self):
         return self.__syntax_kind
+    
+    @classmethod
+    def initialize_operators(cls):
+        cls.__operators = [
+        cls(SyntaxKind.PlusToken,
+                             BoundUnaryOperatorKind.Identity, int),
+        cls(SyntaxKind.MinusToken,
+                             BoundUnaryOperatorKind.Negation, int)
+    ]
 
     @classmethod
     def bind(cls, kind, operand_type):

@@ -1,4 +1,5 @@
 import os
+from binding.binder import Binder
 
 from syntax.evaluator import Evaluator
 from syntax.generics.ie_enumerable import IEnumerable
@@ -48,11 +49,13 @@ def main():
             continue
         parser = Parser(line)
         syntax_tree = SyntaxTree.parse(parser)
+        binder = Binder()
+        bound_expression = binder.bind_expression(syntax_tree.root)
         diagnostics = syntax_tree.diagnostics
         if tree:
             show_parse_tree(syntax_tree.root)
         if not diagnostics.any():
-            evaluator = Evaluator(syntax_tree.root)
+            evaluator = Evaluator(bound_expression)
             result = evaluator.evaluate()
             write_line(result)
         else:

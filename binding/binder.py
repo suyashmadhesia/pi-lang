@@ -13,6 +13,8 @@ class Binder:
 
     def __init__(self):
         self.__diagnostics: List[str] = []
+        BoundUnaryOperator.initialize_operators()
+        BoundBinaryOperator.initialize_operators()
 
     @property
     def diagnostics(self):
