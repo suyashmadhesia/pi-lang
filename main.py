@@ -9,11 +9,11 @@ from code_analysis.syntax.syntax_token import SyntaxToken
 from code_analysis.syntax.syntax_tree import SyntaxTree
 
 
-def write(data: any = ""):
+def write(data: any):
     print(data, end="")
 
 
-def write_line(data: any = ""):
+def write_line(data: any):
     print(data, end="\n")
 
 
@@ -36,7 +36,7 @@ def show_parse_tree(node: SyntaxNode, indent: str = "", is_last: bool = True):
 def main():
     tree = False
     while True:
-        diagnostics: IEnumerable[str] = []
+        diagnostics: IEnumerable[str]
         line = str(input(">>> "))
         if line == "clear":
             clear()

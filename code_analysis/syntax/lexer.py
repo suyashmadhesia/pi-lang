@@ -2,8 +2,8 @@ from typing import List
 
 from .abstract.syntax_kind import SyntaxKind
 from .generics.ie_enumerable import IEnumerable
-from .syntax_token import SyntaxToken
 from .syntax_facts import SyntaxFacts
+from .syntax_token import SyntaxToken
 
 
 class Lexer:
