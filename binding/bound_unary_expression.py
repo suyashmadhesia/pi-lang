@@ -1,5 +1,4 @@
 from binding.abstract.bound_expression import BoundExpression
-from binding.abstract.bound_unary_operator_kind import BoundUnaryOperatorKind
 
 
 class BoundUnaryExpression(BoundExpression):
@@ -22,4 +21,4 @@ class BoundUnaryExpression(BoundExpression):
 
     @property
     def type(self):
-        return type(self.op.type)
+        return self.op.type
