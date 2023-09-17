@@ -57,5 +57,5 @@ class Binder:
         return BoundBinaryExpression(bound_left, bound_operator, bound_right)
 
     def __bind_literal_expression(self, syntax):
-        value = syntax.value if syntax.value else 0
+        value = syntax.value if syntax.value != None else 0
         return BoundLiteralExpression(value)

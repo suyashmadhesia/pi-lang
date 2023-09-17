@@ -33,6 +33,7 @@ class BoundUnaryOperator:
         cls.__operators = [
             cls(SyntaxKind.PlusToken, BoundUnaryOperatorKind.Identity, int),
             cls(SyntaxKind.MinusToken, BoundUnaryOperatorKind.Negation, int),
+            cls(SyntaxKind.BangToken, BoundUnaryOperatorKind.LogicalNegation, bool),
         ]
 
     @classmethod

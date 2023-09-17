@@ -6,3 +6,7 @@ class BoundBinaryOperatorKind(Enum):
     Subtraction = 1
     Multiplication = 2
     Division = 3
+    LogicalAnd = 4
+    LogicalOr = 5
+    NotEquals = 6
+    Equals = 7

@@ -6,12 +6,12 @@ from .abstract.bound_binary_operator_kind import BoundBinaryOperatorKind
 class BoundBinaryOperator:
     __operators = []
 
-    def __init__(self, syntax_kind, kind, left_type, right_type=None, result_type=None):
+    def __init__(self, syntax_kind, kind, left_type, right_type=None, type=None):
         self.__syntax_kind = syntax_kind
         self.__kind = kind
         self.__left_type = left_type
         self.__right_type = left_type if right_type is None else right_type
-        self.__type = left_type if result_type is None else result_type
+        self.__type = left_type if type is None else type
 
     @property
     def kind(self):
@@ -40,6 +40,27 @@ class BoundBinaryOperator:
             cls(SyntaxKind.MinusToken, BoundBinaryOperatorKind.Subtraction, int),
             cls(SyntaxKind.SlashToken, BoundBinaryOperatorKind.Division, int),
             cls(SyntaxKind.StarToken, BoundBinaryOperatorKind.Multiplication, int),
+            cls(
+                SyntaxKind.EqualEqualToken,
+                BoundBinaryOperatorKind.Equals,
+                int,
+                type=bool,
+            ),
+            cls(
+                SyntaxKind.BangEqualToken,
+                BoundBinaryOperatorKind.NotEquals,
+                int,
+                type=bool,
+            ),
+            # logical operators
+            cls(
+                SyntaxKind.AmpersandAmpersandToken,
+                BoundBinaryOperatorKind.LogicalAnd,
+                bool,
+            ),
+            cls(SyntaxKind.PipePipeToken, BoundBinaryOperatorKind.LogicalOr, bool),
+            cls(SyntaxKind.EqualEqualToken, BoundBinaryOperatorKind.Equals, bool),
+            cls(SyntaxKind.BangEqualToken, BoundBinaryOperatorKind.NotEquals, bool),
         ]
 
     @classmethod

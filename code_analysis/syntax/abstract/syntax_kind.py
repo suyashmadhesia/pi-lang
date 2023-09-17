@@ -16,3 +16,11 @@ class SyntaxKind(Enum):
     OpenParenthesisToken = 11
     CloseParenthesisToken = 12
     UnaryExpression = 13
+    AmpersandAmpersandToken = 14
+    PipePipeToken = 15
+    BangToken = 16
+    EqualEqualToken = 17
+    BangEqualToken = 18
+    TrueKeywordToken = 19
+    FalseKeywordToken = 20
+    IdentifierToken = 21

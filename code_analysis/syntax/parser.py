@@ -92,5 +92,9 @@ class Parser:
             expression = self.__parse_expression()
             right = self.__match_token(SyntaxKind.CloseParenthesisToken)
             return ParenthesizedExpressionSyntax(left, expression, right)
+        if self.current.kind == SyntaxKind.TrueKeywordToken or self.current.kind == SyntaxKind.FalseKeywordToken:
+            keyword_token = self.__next_token()
+            value = keyword_token.kind == SyntaxKind.TrueKeywordToken
+            return LiteralExpressionSyntax(keyword_token, value)
         number_token = self.__match_token(SyntaxKind.NumberToken)
         return LiteralExpressionSyntax(number_token)

@@ -7,7 +7,7 @@ from .abstract.bound_binary_operator_kind import BoundBinaryOperatorKind
 T = TypeVar("T")
 
 class BoundBinaryOperator:
-    __operators = List["BoundBinaryOperator"]
+    __operators: List["BoundBinaryOperator"]
 
     def __init__(
         self,
@@ -15,7 +15,7 @@ class BoundBinaryOperator:
         kind: BoundBinaryOperatorKind,
         left_type: T,
         right_type: T,
-        result_type: T | None,
+        type: T | None,
     ) -> None: ...
     @property
     def syntax_kind(self) -> SyntaxKind: ...

@@ -26,6 +26,8 @@ class Evaluator:
                 return int(result)
             if node.op.kind == BoundUnaryOperatorKind.Negation:
                 return -int(result)
+            if node.op.kind == BoundUnaryOperatorKind.LogicalNegation:
+                return not result
             raise Exception(f"Invalid Unary Operator Token {node.op.kind.name}")
 
         if type(node) == BoundBinaryExpression:
@@ -40,5 +42,13 @@ class Evaluator:
                 return int(left) * int(right)
             if node.op.kind == BoundBinaryOperatorKind.Division:
                 return int(left) // int(right)
+            if node.op.kind == BoundBinaryOperatorKind.Equals:
+                return left == right
+            if node.op.kind == BoundBinaryOperatorKind.NotEquals:
+                return left != right
+            if node.op.kind == BoundBinaryOperatorKind.LogicalAnd:
+                return left and right
+            if node.op.kind == BoundBinaryOperatorKind.LogicalOr:
+                return left or right
             raise Exception(f"Invalid Binary Operator Token {node.op.kind.name}")
         raise Exception(f"Invalid node kind {node.kind.name}")
