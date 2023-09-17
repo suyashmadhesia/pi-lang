@@ -3,7 +3,6 @@ from .syntax_node import SyntaxNode
 
 
 class SyntaxToken(SyntaxNode):
-
     def __init__(self, kind, position, text, value=None) -> None:
         self.__kind = kind
         self.__position = position

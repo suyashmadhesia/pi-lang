@@ -1,4 +1,5 @@
 from typing import List
+
 from .abstract.syntax_kind import SyntaxKind
 from .binary_expression_syntax import BinaryExpressionSyntax
 from .generics.ie_enumerable import IEnumerable
@@ -6,14 +7,12 @@ from .lexer import Lexer
 from .literal_expression_syntax import LiteralExpressionSyntax
 from .parenthesized_expression_syntax import ParenthesizedExpressionSyntax
 from .syntax_facts import SyntaxFacts
-
 from .syntax_token import SyntaxToken
 from .syntax_tree import SyntaxTree
 from .unary_expression_syntax import UnaryExpressionSyntax
 
 
 class Parser:
-
     def __init__(self, text):
         self.__tokens: List[SyntaxToken] = []
         self.__diagnostics: List[str] = []
@@ -50,7 +49,8 @@ class Parser:
         if self.current.kind == kind:
             return self.__next_token()
         self.__diagnostics.append(
-            f"ERROR: Unexpected token <{self.current.kind.name}> expected <{kind.name}>")
+            f"ERROR: Unexpected token <{self.current.kind.name}> expected <{kind.name}>"
+        )
         return SyntaxToken(kind, self.current.position, "")
 
     def parse(self):
@@ -61,8 +61,12 @@ class Parser:
     def __parse_expression(self, parent_precedence=0):
         left = None
         unary_operator_precdence = SyntaxFacts.get_unary_operator_precedence(
-            self.current.kind)
-        if unary_operator_precdence != 0 and unary_operator_precdence >= parent_precedence:
+            self.current.kind
+        )
+        if (
+            unary_operator_precdence != 0
+            and unary_operator_precdence >= parent_precedence
+        ):
             operator_token = self.__next_token()
             operand = self.__parse_expression(unary_operator_precdence)
             left = UnaryExpressionSyntax(operator_token, operand)
@@ -70,8 +74,12 @@ class Parser:
             left = self.__parse_primary_expression()
         while True:
             binary_operator_precedence = SyntaxFacts.get_binary_operator_precedence(
-                self.current.kind)
-            if binary_operator_precedence == 0 or binary_operator_precedence <= parent_precedence:
+                self.current.kind
+            )
+            if (
+                binary_operator_precedence == 0
+                or binary_operator_precedence <= parent_precedence
+            ):
                 break
             operator_token = self.__next_token()
             right = self.__parse_expression(binary_operator_precedence)

@@ -4,9 +4,7 @@ from .generics.ie_enumerable import IEnumerable
 
 
 class ParenthesizedExpressionSyntax(ExpressionSyntax):
-
-    def __init__(self, open_parenthesis,
-                 expression, close_parenthesis):
+    def __init__(self, open_parenthesis, expression, close_parenthesis):
         self.__open_parenthesis = open_parenthesis
         self.__expression = expression
         self.__close_parenthesis = close_parenthesis
@@ -28,4 +26,6 @@ class ParenthesizedExpressionSyntax(ExpressionSyntax):
         return SyntaxKind.ParenthesizedExpression
 
     def get_children(self):
-        return IEnumerable([self.open_parenthesis, self.expression, self.close_parenthesis])
+        return IEnumerable(
+            [self.open_parenthesis, self.expression, self.close_parenthesis]
+        )

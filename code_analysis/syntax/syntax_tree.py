@@ -1,5 +1,4 @@
 class SyntaxTree:
-
     def __init__(self, diagnostics, root, end_of_file_token):
         self.__diagnostics = diagnostics
         self.__root = root

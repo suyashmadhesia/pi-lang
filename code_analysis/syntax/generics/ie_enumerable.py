@@ -1,6 +1,6 @@
 from typing import Iterable, TypeVar
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class IEnumerable(Iterable[T]):
@@ -8,7 +8,7 @@ class IEnumerable(Iterable[T]):
         self.__data = data
         self.__index = 0
 
-    def __iter__(self) -> 'IEnumerable[T]':
+    def __iter__(self) -> "IEnumerable[T]":
         return self
 
     def __next__(self) -> T:
@@ -25,7 +25,7 @@ class IEnumerable(Iterable[T]):
 
     def last_or_default(self, default_value: T = None) -> bool:
         return self.__data[-1] if self.any() else default_value
-    
-    def extend(self, data: Iterable[T]) -> 'IEnumerable[T]':
+
+    def extend(self, data: Iterable[T]) -> "IEnumerable[T]":
         self.__data.extend(data)
         return self

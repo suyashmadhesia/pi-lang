@@ -1,7 +1,7 @@
-from enum import Enum 
+from enum import Enum
+
 
 class BoundBinaryOperatorKind(Enum):
-
     Addition = 0
     Subtraction = 1
     Multiplication = 2

@@ -16,4 +16,3 @@ class SyntaxKind(Enum):
     OpenParenthesisToken = 11
     CloseParenthesisToken = 12
     UnaryExpression = 13
-

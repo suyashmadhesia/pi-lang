@@ -5,7 +5,6 @@ from .syntax_node import SyntaxNode
 
 
 class UnaryExpressionSyntax(ExpressionSyntax):
-
     def __init__(self, operator_token, operand):
         self.__operatorToken = operator_token
         self.__operand = operand

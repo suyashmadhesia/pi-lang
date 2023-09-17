@@ -1,9 +1,9 @@
-from .abstract.bound_unary_operator_kind import BoundUnaryOperatorKind
 from code_analysis.syntax.abstract.syntax_kind import SyntaxKind
+
+from .abstract.bound_unary_operator_kind import BoundUnaryOperatorKind
 
 
 class BoundUnaryOperator:
-
     __operators = []
 
     def __init__(self, syntax_kind, kind, operand_type, result_type=None):
@@ -27,15 +27,13 @@ class BoundUnaryOperator:
     @property
     def syntax_kind(self):
         return self.__syntax_kind
-    
+
     @classmethod
     def initialize_operators(cls):
         cls.__operators = [
-        cls(SyntaxKind.PlusToken,
-                             BoundUnaryOperatorKind.Identity, int),
-        cls(SyntaxKind.MinusToken,
-                             BoundUnaryOperatorKind.Negation, int)
-    ]
+            cls(SyntaxKind.PlusToken, BoundUnaryOperatorKind.Identity, int),
+            cls(SyntaxKind.MinusToken, BoundUnaryOperatorKind.Negation, int),
+        ]
 
     @classmethod
     def bind(cls, kind, operand_type):

@@ -1,12 +1,13 @@
 import os
+
 from code_analysis.binding.binder import Binder
 from code_analysis.evaluator import Evaluator
 from code_analysis.syntax.generics.ie_enumerable import IEnumerable
 from code_analysis.syntax.parser import Parser
-
 from code_analysis.syntax.syntax_node import SyntaxNode
 from code_analysis.syntax.syntax_token import SyntaxToken
 from code_analysis.syntax.syntax_tree import SyntaxTree
+
 
 def write(data: any = ""):
     print(data, end="")
@@ -43,7 +44,7 @@ def main():
         if line == "exit":
             break
         if line == "tree":
-            write_line('Showing parse tree')
+            write_line("Showing parse tree")
             tree = not tree
             continue
         parser = Parser(line)

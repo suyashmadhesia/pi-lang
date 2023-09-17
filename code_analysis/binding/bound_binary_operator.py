@@ -1,9 +1,9 @@
 from code_analysis.syntax.abstract.syntax_kind import SyntaxKind
+
 from .abstract.bound_binary_operator_kind import BoundBinaryOperatorKind
 
 
 class BoundBinaryOperator:
-
     __operators = []
 
     def __init__(self, syntax_kind, kind, left_type, right_type=None, result_type=None):
@@ -33,23 +33,22 @@ class BoundBinaryOperator:
     def type(self):
         return self.__type
 
-
-
     @classmethod
     def initialize_operators(cls):
-        cls.__operators = [cls(
-            SyntaxKind.PlusToken, BoundBinaryOperatorKind.Addition, int),
-            cls(
-            SyntaxKind.MinusToken, BoundBinaryOperatorKind.Subtraction, int),
-            cls(
-            SyntaxKind.SlashToken, BoundBinaryOperatorKind.Division, int),
-            cls(
-            SyntaxKind.StarToken, BoundBinaryOperatorKind.Multiplication, int),
+        cls.__operators = [
+            cls(SyntaxKind.PlusToken, BoundBinaryOperatorKind.Addition, int),
+            cls(SyntaxKind.MinusToken, BoundBinaryOperatorKind.Subtraction, int),
+            cls(SyntaxKind.SlashToken, BoundBinaryOperatorKind.Division, int),
+            cls(SyntaxKind.StarToken, BoundBinaryOperatorKind.Multiplication, int),
         ]
 
     @classmethod
     def bind(cls, kind, left_type, right_type):
         for op in cls.__operators:
-            if op.syntax_kind == kind and op.left_type == left_type and op.right_type == right_type:
+            if (
+                op.syntax_kind == kind
+                and op.left_type == left_type
+                and op.right_type == right_type
+            ):
                 return op
         return None

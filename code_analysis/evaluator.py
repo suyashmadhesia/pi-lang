@@ -1,12 +1,15 @@
-from code_analysis.binding.abstract.bound_binary_operator_kind import BoundBinaryOperatorKind
-from code_analysis.binding.abstract.bound_unary_operator_kind import BoundUnaryOperatorKind
+from code_analysis.binding.abstract.bound_binary_operator_kind import (
+    BoundBinaryOperatorKind,
+)
+from code_analysis.binding.abstract.bound_unary_operator_kind import (
+    BoundUnaryOperatorKind,
+)
 from code_analysis.binding.bound_binary_expression import BoundBinaryExpression
 from code_analysis.binding.bound_literal_expression import BoundLiteralExpression
 from code_analysis.binding.bound_unary_expression import BoundUnaryExpression
 
 
 class Evaluator:
-
     def __init__(self, root):
         self.__root = root
 
@@ -23,8 +26,7 @@ class Evaluator:
                 return int(result)
             if node.op.kind == BoundUnaryOperatorKind.Negation:
                 return -int(result)
-            raise Exception(
-                f"Invalid Unary Operator Token {node.op.kind.name}")
+            raise Exception(f"Invalid Unary Operator Token {node.op.kind.name}")
 
         if type(node) == BoundBinaryExpression:
             left = self.__evaluate_expression(node.left)
@@ -38,7 +40,5 @@ class Evaluator:
                 return int(left) * int(right)
             if node.op.kind == BoundBinaryOperatorKind.Division:
                 return int(left) // int(right)
-            raise Exception(
-                f"Invalid Binary Operator Token {node.op.kind.name}")
-        raise Exception(
-            f"Invalid node kind {node.kind.name}")
+            raise Exception(f"Invalid Binary Operator Token {node.op.kind.name}")
+        raise Exception(f"Invalid node kind {node.kind.name}")

@@ -2,7 +2,6 @@ from .abstract.bound_expression import BoundExpression
 
 
 class BoundUnaryExpression(BoundExpression):
-
     def __init__(self, op, operand):
         self.__op = op
         self.__operand = operand
