@@ -1,13 +1,12 @@
 import os
-from binding.binder import Binder
+from code_analysis.binding.binder import Binder
+from code_analysis.evaluator import Evaluator
+from code_analysis.syntax.generics.ie_enumerable import IEnumerable
+from code_analysis.syntax.parser import Parser
 
-from syntax.evaluator import Evaluator
-from syntax.generics.ie_enumerable import IEnumerable
-from syntax.syntax_node import SyntaxNode
-from syntax.syntax_token import SyntaxToken
-from syntax.syntax_tree import SyntaxTree
-from syntax.parser import Parser
-
+from code_analysis.syntax.syntax_node import SyntaxNode
+from code_analysis.syntax.syntax_token import SyntaxToken
+from code_analysis.syntax.syntax_tree import SyntaxTree
 
 def write(data: any = ""):
     print(data, end="")
